@@ -1,4 +1,4 @@
-## A Follow-up (or slight alternative) to STACCATO
+# A Follow-up (or Slight Alternative) to STACCATO
 
 STACCATO (Revsbech et al., 2018) basically proceeds by 6 steps:
 
@@ -28,9 +28,9 @@ Some caveats I see to this approach:
 1. I’m not sure whether augmentation by noisification (or k-correction), would be enough to give more coverage in ranges of the relevant feature space. For instance, Figures 12 and 13 talk in terms of coverage of redshift vs. brightness. Would noisification (or k-corrections) give us a less-biased data set for these two variables (features)?
 2. There are some aspects of the general procedure of STACCATO that are still not clear for me. For instance, why do the partitions in Figure 13 seem to have different boundaries in the redshift vs brightness plot?
 3. Even if at this point I understand the general steps of STACCATO, I still may have to get deeper (study carefully, time(!!)) into some of the things they do (some of them we will not do), in order to have a valid ground for comparison and to re-implement for our case if necessary. This includes the calculation of the propensity score, their diffusion maps procedure (they optimize the parameters via cross-validation), light curve normalization (flux standardization, time zero estimation).
-4. There is a follow-up of STACCATO called StratLearn (Autenrieth et al., 2021). The paper contains hard statistics concepts, and I have not yet studied it carefully. However, it seems that they do not rely on augmentation nor in a validation set (?) for pre-processing. This may invalidate the point mentioned before about a possible advantage of our alternative method in the case we don’t generate a better classification.
+4. There is a follow-up of STACCATO called StratLearn (Autenrieth et al., 2021). The paper contains hard statistics concepts, and I have not yet studied it carefully (time and knowledge required(!!)). However, it seems that they do not rely on augmentation nor in a validation set (?) for pre-processing. This may invalidate the point mentioned before about a possible advantage of our alternative method in the case we don’t generate a better classification.
 
-### Docstrings 
+## Docstrings 
 
 Here are some of the methods we would need to implement for this project:
 
@@ -124,8 +124,6 @@ These methods would be used as follows (SNGuess-like features case):
 >>> test_quints = prop_score_model.split_propensity_quintiles(features_training)
 
 # Augment the quintiles with less light curves by noisification
-
-...
 
 >>> noise_model = NoisificationModel()
 >>> quints_aug[0] = noise_model.fit_and_augment(test_quints[0], len(train_quints[0]))
